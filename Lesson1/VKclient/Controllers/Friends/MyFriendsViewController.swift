@@ -18,10 +18,13 @@ class MyFriendsViewController: UIViewController {
     var searchFriends = [Human]()
     var modelFriend = [Human]()
 
+    let webFriends = WebDataRequest()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        webFriends.sendFriendsGetRequest()
+        print("\(Session.sharedInstance.token)")
 
         myFriendsTableView.register(UINib(nibName: thisIsNibName, bundle: nil), forCellReuseIdentifier: tableViewCellReusableIdentifier)
 

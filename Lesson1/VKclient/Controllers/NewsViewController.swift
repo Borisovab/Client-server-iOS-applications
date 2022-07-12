@@ -21,9 +21,15 @@ class NewsViewController: UIViewController {
 
     var indexPath: IndexPath!
 
+    let webFriendsPhotos = WebDataRequest()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        webFriendsPhotos.sendFriedsPhotoGetRequest()
+
+        
         newsTableView.register(UINib(nibName: registerNibName, bundle: nil), forCellReuseIdentifier: anotherNewsTableViewCellReusableIdentifier)
         newsTableView.register(UINib(nibName: registerNibNameForFriends, bundle: nil), forCellReuseIdentifier: newsTableViewCellReusableIdentifier)
 
@@ -36,6 +42,8 @@ class NewsViewController: UIViewController {
 
         myGroupsArrayForNews = Storage.shared.groups.communities
         newsTableView.reloadData()
+
+      
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MjH-qH-1Dj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D2Q-ld-diW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -9,10 +9,46 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Web Login View Controller-->
+        <scene sceneID="Cpd-j9-icJ">
+            <objects>
+                <viewController id="Pjv-K2-Bgl" customClass="WebLoginViewController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0si-ul-9Ki">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dr-gT-qUa">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XFG-hH-wQh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6dr-gT-qUa" firstAttribute="top" secondItem="XFG-hH-wQh" secondAttribute="top" id="2z1-M8-bkM"/>
+                            <constraint firstItem="6dr-gT-qUa" firstAttribute="leading" secondItem="XFG-hH-wQh" secondAttribute="leading" id="fWK-qB-V8M"/>
+                            <constraint firstItem="XFG-hH-wQh" firstAttribute="trailing" secondItem="6dr-gT-qUa" secondAttribute="trailing" id="qLp-iY-RAZ"/>
+                            <constraint firstItem="XFG-hH-wQh" firstAttribute="bottom" secondItem="6dr-gT-qUa" secondAttribute="bottom" id="x1d-UN-2hA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="1lG-tE-IZz"/>
+                    <connections>
+                        <outlet property="loginWebView" destination="6dr-gT-qUa" id="s13-zS-qF2"/>
+                        <segue destination="v6z-8T-i6P" kind="show" identifier="goFromWebLogin" id="w8e-yn-2hd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fNP-6y-WqK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-201" y="82"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,6 +321,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mtq-26-KY9"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="loginText" destination="vf2-Dy-Nv6" id="msR-f7-acx"/>
                         <outlet property="logoImage" destination="Iyd-NS-bNw" id="Qe6-AF-Yj9"/>
@@ -300,7 +337,6 @@
                         <outlet property="view7" destination="xPz-Ol-ONh" id="1Ew-xt-Fp7"/>
                         <outlet property="view8" destination="1gv-qO-kX3" id="ED1-4o-frL"/>
                         <outlet property="view9" destination="pY3-K4-gCv" id="Z7n-fG-yrV"/>
-                        <segue destination="v6z-8T-i6P" kind="show" identifier="goFromLogin" id="SX0-ZX-bSF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -835,7 +871,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ZD1-0s-M5r">
             <objects>
-                <tabBarController id="v6z-8T-i6P" customClass="TabBarController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="v6z-8T-i6P" customClass="TabBarController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Uq4-3x-CPK"/>
                     <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="5Ud-g1-Ri9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -858,8 +894,9 @@
         <!--Navigation Controller-->
         <scene sceneID="mLW-Xv-aSa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MjH-qH-1Dj" sceneMemberID="viewController">
+                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" id="MjH-qH-1Dj" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="QeK-xO-PLl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1ZX-Fh-dXg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -873,10 +910,46 @@
             </objects>
             <point key="canvasLocation" x="1038" y="-644"/>
         </scene>
+        <!--Test Search Group View Controller-->
+        <scene sceneID="DIs-Pd-QTk">
+            <objects>
+                <viewController storyboardIdentifier="TestSearchGroupViewController" id="9yI-mu-p2X" customClass="TestSearchGroupViewController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cbX-z5-Gp1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kd4-k0-fem">
+                                <rect key="frame" x="20" y="208" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbK-WK-Pp7">
+                                <rect key="frame" x="107" y="381" width="201" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="searchButtonAction:" destination="9yI-mu-p2X" eventType="touchUpInside" id="sCf-WO-72O"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DFj-lG-8CP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="FrB-F1-DQF"/>
+                    <connections>
+                        <outlet property="SearchTextField" destination="Kd4-k0-fem" id="LKN-Hy-Pup"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w9p-d1-7zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1452.1739130434785" y="3020.7589285714284"/>
+        </scene>
         <!--News List-->
         <scene sceneID="bGl-7w-6H5">
             <objects>
-                <viewController id="YCW-ys-Cfb" customClass="NewsViewController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsViewController" id="YCW-ys-Cfb" customClass="NewsViewController" customModule="VKclient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0t-gx-4Pg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -922,7 +995,13 @@
                             <constraint firstItem="xxQ-Hg-iH8" firstAttribute="bottom" secondItem="xNz-dU-3vL" secondAttribute="bottom" id="oDe-UJ-Pox"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="News List" id="JGQ-A1-5To"/>
+                    <navigationItem key="navigationItem" title="News List" id="JGQ-A1-5To">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="IkA-q4-hu9">
+                            <connections>
+                                <segue destination="9yI-mu-p2X" kind="show" id="kMQ-pp-DaT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="newsTableView" destination="xxQ-Hg-iH8" id="nTd-9e-fBv"/>
                     </connections>
@@ -1012,6 +1091,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SoX-XB-gUv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1451" y="1531"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ASi-bA-cdr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D2Q-ld-diW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3MF-cM-yd4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Pjv-K2-Bgl" kind="relationship" relationship="rootViewController" id="o5l-na-CAa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4RJ-Sd-bzI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-201" y="-644"/>
         </scene>
     </scenes>
     <resources>

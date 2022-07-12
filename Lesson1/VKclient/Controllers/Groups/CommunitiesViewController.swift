@@ -18,6 +18,8 @@ class CommunitiesViewController: UIViewController {
     var searchCommunity = [Group]()
     var communities = [Group]()
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

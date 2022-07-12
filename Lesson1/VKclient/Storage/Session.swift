@@ -15,5 +15,6 @@ class Session {
 
     var token = ""
     var Id = 0
+    var friendsIDArray = [Int]()
 
 }
