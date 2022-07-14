@@ -14,8 +14,11 @@
 		0052A46B284A049D00FC061C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0052A469284A049D00FC061C /* TableViewCell.xib */; };
 		0069503E285215530003E68B /* LikeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0069503D285215530003E68B /* LikeControlView.swift */; };
 		00695040285215820003E68B /* LikeControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0069503F285215820003E68B /* LikeControlView.xib */; };
+		007F713C287F1DA100AB7427 /* FriendsArrayParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F713B287F1DA100AB7427 /* FriendsArrayParam.swift */; };
+		007F7140287F3DB500AB7427 /* FriendsJSONInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F713F287F3DB500AB7427 /* FriendsJSONInfo.swift */; };
+		007F7142287F5DB400AB7427 /* GroupsArrayParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F7141287F5DB400AB7427 /* GroupsArrayParam.swift */; };
+		007F7144287F61DA00AB7427 /* PhotosArrayParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F7143287F61DA00AB7427 /* PhotosArrayParam.swift */; };
 		0082E21D287C53910030528A /* WebLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082E21C287C53910030528A /* WebLoginViewController.swift */; };
-		0082E21F287C54C10030528A /* URLSessionNetworker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082E21E287C54C10030528A /* URLSessionNetworker.swift */; };
 		0082E221287C8E260030528A /* WebDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082E220287C8E260030528A /* WebDataRequest.swift */; };
 		0093218A2849F881005A0308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009321892849F881005A0308 /* AppDelegate.swift */; };
 		0093218C2849F881005A0308 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093218B2849F881005A0308 /* SceneDelegate.swift */; };
@@ -67,8 +70,11 @@
 		0052A469284A049D00FC061C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		0069503D285215530003E68B /* LikeControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControlView.swift; sourceTree = "<group>"; };
 		0069503F285215820003E68B /* LikeControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeControlView.xib; sourceTree = "<group>"; };
+		007F713B287F1DA100AB7427 /* FriendsArrayParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsArrayParam.swift; sourceTree = "<group>"; };
+		007F713F287F3DB500AB7427 /* FriendsJSONInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsJSONInfo.swift; sourceTree = "<group>"; };
+		007F7141287F5DB400AB7427 /* GroupsArrayParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsArrayParam.swift; sourceTree = "<group>"; };
+		007F7143287F61DA00AB7427 /* PhotosArrayParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosArrayParam.swift; sourceTree = "<group>"; };
 		0082E21C287C53910030528A /* WebLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLoginViewController.swift; sourceTree = "<group>"; };
-		0082E21E287C54C10030528A /* URLSessionNetworker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionNetworker.swift; sourceTree = "<group>"; };
 		0082E220287C8E260030528A /* WebDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDataRequest.swift; sourceTree = "<group>"; };
 		009321862849F881005A0308 /* VKclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009321892849F881005A0308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +134,6 @@
 		001E0731285C804700D33D4A /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0082E21E287C54C10030528A /* URLSessionNetworker.swift */,
 				001E072F285C7F6700D33D4A /* Storage.swift */,
 				00182EED2875D429007978DF /* Session.swift */,
 			);
@@ -155,6 +160,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		007F713A287F1D4A00AB7427 /* StructuresForJSONRequest */ = {
+			isa = PBXGroup;
+			children = (
+				007F713B287F1DA100AB7427 /* FriendsArrayParam.swift */,
+				007F713F287F3DB500AB7427 /* FriendsJSONInfo.swift */,
+				007F7141287F5DB400AB7427 /* GroupsArrayParam.swift */,
+				007F7143287F61DA00AB7427 /* PhotosArrayParam.swift */,
+			);
+			path = StructuresForJSONRequest;
+			sourceTree = "<group>";
+		};
 		0082E222287C8E470030528A /* WEB */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +187,6 @@
 				009321942849F882005A0308 /* LaunchScreen.storyboard */,
 				009321922849F882005A0308 /* Assets.xcassets */,
 				0093218F2849F881005A0308 /* Main.storyboard */,
-				00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */,
 				009321872849F881005A0308 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -190,6 +205,7 @@
 				009321972849F882005A0308 /* Info.plist */,
 				0093219F284A025C005A0308 /* Systems */,
 				00F04198286390BB001145E4 /* NavigationControllerAnimation */,
+				007F713A287F1D4A00AB7427 /* StructuresForJSONRequest */,
 				0082E222287C8E470030528A /* WEB */,
 				009321A0284A026E005A0308 /* Controllers */,
 				001E0731285C804700D33D4A /* Storage */,
@@ -216,6 +232,7 @@
 				0093218D2849F881005A0308 /* LoginViewController.swift */,
 				00183F172859FA7400D88F05 /* TabBarController.swift */,
 				00C13713286C5A5E008715AA /* NewsViewController.swift */,
+				00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */,
 				00F041AD2865DD9C001145E4 /* MyProfile */,
 				00F041AB2865DD30001145E4 /* Groups */,
 				00F041AC2865DD45001145E4 /* Friends */,
@@ -435,9 +452,10 @@
 				00C8BF54284F98F7001D0801 /* MyPhotoGallery.swift in Sources */,
 				0093218E2849F881005A0308 /* LoginViewController.swift in Sources */,
 				0069503E285215530003E68B /* LikeControlView.swift in Sources */,
+				007F7144287F61DA00AB7427 /* PhotosArrayParam.swift in Sources */,
 				00C8BF51284DFB52001D0801 /* SelectedPhotoCollectionViewCell.swift in Sources */,
+				007F7142287F5DB400AB7427 /* GroupsArrayParam.swift in Sources */,
 				00C13719286CB775008715AA /* NewsTableViewCell.swift in Sources */,
-				0082E21F287C54C10030528A /* URLSessionNetworker.swift in Sources */,
 				00F041B02865F18A001145E4 /* GroupGalleryViewController.swift in Sources */,
 				00C13714286C5A5E008715AA /* NewsViewController.swift in Sources */,
 				00F0412D2860B10E001145E4 /* GroupProfileViewController.swift in Sources */,
@@ -452,10 +470,12 @@
 				00F041A62865DC25001145E4 /* GalleryHorisontalView.swift in Sources */,
 				00A0CD6A284A5BB8000DA04B /* Support.swift in Sources */,
 				00F0419E28639137001145E4 /* CastomNavigationController.swift in Sources */,
+				007F713C287F1DA100AB7427 /* FriendsArrayParam.swift in Sources */,
 				00F0412F2860B777001145E4 /* ModelGroup.swift in Sources */,
 				0082E21D287C53910030528A /* WebLoginViewController.swift in Sources */,
 				00B347A6284A25110049D83A /* Human.swift in Sources */,
 				00B3479B284A0A8F0049D83A /* CommunitiesViewController.swift in Sources */,
+				007F7140287F3DB500AB7427 /* FriendsJSONInfo.swift in Sources */,
 				00C8BF4E284DFABB001D0801 /* FriendsPhotoViewController.swift in Sources */,
 				00183F182859FA7400D88F05 /* TabBarController.swift in Sources */,
 				00C8BF56284F9D7C001D0801 /* MyPhotoGalleryViewController.swift in Sources */,

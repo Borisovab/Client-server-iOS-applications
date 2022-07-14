@@ -16,6 +16,8 @@ class MyPhotoGalleryViewController: UIViewController {
     var fullScreenPhotoGallery = [ForMyGallery]()
 
     var galleryArrayIndex = 0
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

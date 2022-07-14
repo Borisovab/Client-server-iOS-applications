@@ -113,12 +113,7 @@ extension MyGroupsViewController: UITableViewDelegate {
 //            vc.myGroupsArray = groupArray
         }
     }
-
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let groupPhoto = myFriendGroup[indexPath.row]
-//        performSegue(withIdentifier: goToGroupProfileSegueIdentifier, sender: groupPhoto)
-//    }
+    
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
