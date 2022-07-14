@@ -14,6 +14,9 @@
 		0052A46B284A049D00FC061C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0052A469284A049D00FC061C /* TableViewCell.xib */; };
 		0069503E285215530003E68B /* LikeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0069503D285215530003E68B /* LikeControlView.swift */; };
 		00695040285215820003E68B /* LikeControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0069503F285215820003E68B /* LikeControlView.xib */; };
+		0082E21D287C53910030528A /* WebLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082E21C287C53910030528A /* WebLoginViewController.swift */; };
+		0082E21F287C54C10030528A /* URLSessionNetworker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082E21E287C54C10030528A /* URLSessionNetworker.swift */; };
+		0082E221287C8E260030528A /* WebDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082E220287C8E260030528A /* WebDataRequest.swift */; };
 		0093218A2849F881005A0308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009321892849F881005A0308 /* AppDelegate.swift */; };
 		0093218C2849F881005A0308 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093218B2849F881005A0308 /* SceneDelegate.swift */; };
 		0093218E2849F881005A0308 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093218D2849F881005A0308 /* LoginViewController.swift */; };
@@ -42,6 +45,7 @@
 		00C8BF52284DFB52001D0801 /* SelectedPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C8BF50284DFB52001D0801 /* SelectedPhotoCollectionViewCell.xib */; };
 		00C8BF54284F98F7001D0801 /* MyPhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF53284F98F7001D0801 /* MyPhotoGallery.swift */; };
 		00C8BF56284F9D7C001D0801 /* MyPhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF55284F9D7C001D0801 /* MyPhotoGalleryViewController.swift */; };
+		00D65BC3287DC82C00554E01 /* TestSearchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */; };
 		00F04107285E1517001145E4 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F04106285E1517001145E4 /* MyProfile.swift */; };
 		00F04109285E15D8001145E4 /* ModelMyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F04108285E15D8001145E4 /* ModelMyProfile.swift */; };
 		00F0412D2860B10E001145E4 /* GroupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F0412C2860B10E001145E4 /* GroupProfileViewController.swift */; };
@@ -63,6 +67,9 @@
 		0052A469284A049D00FC061C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		0069503D285215530003E68B /* LikeControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControlView.swift; sourceTree = "<group>"; };
 		0069503F285215820003E68B /* LikeControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeControlView.xib; sourceTree = "<group>"; };
+		0082E21C287C53910030528A /* WebLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLoginViewController.swift; sourceTree = "<group>"; };
+		0082E21E287C54C10030528A /* URLSessionNetworker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionNetworker.swift; sourceTree = "<group>"; };
+		0082E220287C8E260030528A /* WebDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDataRequest.swift; sourceTree = "<group>"; };
 		009321862849F881005A0308 /* VKclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		009321892849F881005A0308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0093218B2849F881005A0308 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +100,7 @@
 		00C8BF50284DFB52001D0801 /* SelectedPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		00C8BF53284F98F7001D0801 /* MyPhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoGallery.swift; sourceTree = "<group>"; };
 		00C8BF55284F9D7C001D0801 /* MyPhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoGalleryViewController.swift; sourceTree = "<group>"; };
+		00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSearchGroupViewController.swift; sourceTree = "<group>"; };
 		00F04106285E1517001145E4 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 		00F04108285E15D8001145E4 /* ModelMyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMyProfile.swift; sourceTree = "<group>"; };
 		00F0412C2860B10E001145E4 /* GroupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupProfileViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 		001E0731285C804700D33D4A /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				0082E21E287C54C10030528A /* URLSessionNetworker.swift */,
 				001E072F285C7F6700D33D4A /* Storage.swift */,
 				00182EED2875D429007978DF /* Session.swift */,
 			);
@@ -146,6 +155,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0082E222287C8E470030528A /* WEB */ = {
+			isa = PBXGroup;
+			children = (
+				0082E21C287C53910030528A /* WebLoginViewController.swift */,
+				0082E220287C8E260030528A /* WebDataRequest.swift */,
+			);
+			name = WEB;
+			sourceTree = "<group>";
+		};
 		0093217D2849F881005A0308 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +171,7 @@
 				009321942849F882005A0308 /* LaunchScreen.storyboard */,
 				009321922849F882005A0308 /* Assets.xcassets */,
 				0093218F2849F881005A0308 /* Main.storyboard */,
+				00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */,
 				009321872849F881005A0308 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,6 +190,7 @@
 				009321972849F882005A0308 /* Info.plist */,
 				0093219F284A025C005A0308 /* Systems */,
 				00F04198286390BB001145E4 /* NavigationControllerAnimation */,
+				0082E222287C8E470030528A /* WEB */,
 				009321A0284A026E005A0308 /* Controllers */,
 				001E0731285C804700D33D4A /* Storage */,
 				0069504128521CFA0003E68B /* Views */,
@@ -417,12 +437,15 @@
 				0069503E285215530003E68B /* LikeControlView.swift in Sources */,
 				00C8BF51284DFB52001D0801 /* SelectedPhotoCollectionViewCell.swift in Sources */,
 				00C13719286CB775008715AA /* NewsTableViewCell.swift in Sources */,
+				0082E21F287C54C10030528A /* URLSessionNetworker.swift in Sources */,
 				00F041B02865F18A001145E4 /* GroupGalleryViewController.swift in Sources */,
 				00C13714286C5A5E008715AA /* NewsViewController.swift in Sources */,
 				00F0412D2860B10E001145E4 /* GroupProfileViewController.swift in Sources */,
+				0082E221287C8E260030528A /* WebDataRequest.swift in Sources */,
 				00F0419C2863911E001145E4 /* PopAnimator.swift in Sources */,
 				00B347A2284A21760049D83A /* PeopleViewController.swift in Sources */,
 				00A0CD6C284A5DEC000DA04B /* ModelPeople.swift in Sources */,
+				00D65BC3287DC82C00554E01 /* TestSearchGroupViewController.swift in Sources */,
 				00C1371E286CCBDF008715AA /* AnotherNewsTableViewCell.swift in Sources */,
 				00F04109285E15D8001145E4 /* ModelMyProfile.swift in Sources */,
 				0093218A2849F881005A0308 /* AppDelegate.swift in Sources */,
@@ -430,6 +453,7 @@
 				00A0CD6A284A5BB8000DA04B /* Support.swift in Sources */,
 				00F0419E28639137001145E4 /* CastomNavigationController.swift in Sources */,
 				00F0412F2860B777001145E4 /* ModelGroup.swift in Sources */,
+				0082E21D287C53910030528A /* WebLoginViewController.swift in Sources */,
 				00B347A6284A25110049D83A /* Human.swift in Sources */,
 				00B3479B284A0A8F0049D83A /* CommunitiesViewController.swift in Sources */,
 				00C8BF4E284DFABB001D0801 /* FriendsPhotoViewController.swift in Sources */,

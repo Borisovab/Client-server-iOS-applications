@@ -21,8 +21,12 @@ class MyGroupsViewController: UIViewController {
     var searchGroup = [Group]()
     var myFriendGroup = [Group]()
 
+    let webGroups = WebDataRequest()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        webGroups.sendGroupsGetRequest()
 
         myGroupsTableView.register(UINib(nibName: thisIsNibName, bundle: nil), forCellReuseIdentifier: tableViewCellReusableIdentifier)
 
