@@ -18,6 +18,7 @@ class MyFriendsViewController: UIViewController {
     var searchFriends = [Human]()
     var modelFriend = [Human]()
 
+
     let webFriends = WebDataRequest()
 
     override func viewDidLoad() {
@@ -55,8 +56,6 @@ class MyFriendsViewController: UIViewController {
             myFriendsTableView.reloadData()
         }
     }
-
-    
 }
 
 

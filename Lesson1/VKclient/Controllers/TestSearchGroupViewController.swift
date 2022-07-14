@@ -18,10 +18,6 @@ class TestSearchGroupViewController: UIViewController {
 
     }
 
-//    func printSearchedGroups(text: String) {
-//        webGroupsSearch.sendGroupsSearchGetRequest(Str: searchTextField.text ?? "")
-//    }
-
     @IBAction func searchButtonAction(_ sender: UIButton) {
         webGroupsSearch.sendGroupsSearchGetRequest(Str: searchTextField.text ?? "")
     }
