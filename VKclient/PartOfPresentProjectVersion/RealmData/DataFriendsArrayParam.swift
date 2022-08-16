@@ -10,15 +10,6 @@ import RealmSwift
 
 //MARK: - Data for friends
 
-class RealmResponseFriends: Object {
-    @Persisted
-    var count: Int
-
-    @Persisted
-    var items: List<RealmResponseFriends>
-
-}
-
 
 class RealmFriendsArrayParam: Object {
     @Persisted

@@ -125,7 +125,7 @@ extension WebGroupNewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if indexPath.section == 0 {
-            return 130
+            return 120
         } else {
 
             return 350

@@ -74,7 +74,7 @@ extension WebNewsFriendsTableViewCell: UICollectionViewDataSource {
 
         cell.photoImage.showImage(with: url)
 
-        cell.layer.cornerRadius = 35
+        cell.layer.cornerRadius = cell.photoImage.bounds.width/2
         cell.layer.borderWidth = 2
         cell.layer.borderColor = #colorLiteral(red: 0.874512732, green: 0.9583994746, blue: 0.9569959044, alpha: 1)
 
