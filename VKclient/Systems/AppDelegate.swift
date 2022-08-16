@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         notificationCenter.delegate = self
         sendNotifications()
+
+        print("file path")
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+
         return true
     }
 
