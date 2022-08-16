@@ -56,6 +56,8 @@
 		00C8BF54284F98F7001D0801 /* MyPhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF53284F98F7001D0801 /* MyPhotoGallery.swift */; };
 		00C8BF56284F9D7C001D0801 /* MyPhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C8BF55284F9D7C001D0801 /* MyPhotoGalleryViewController.swift */; };
 		00D65BC3287DC82C00554E01 /* TestSearchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */; };
+		00E655F028ABC68300466E56 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E655EF28ABC68300466E56 /* PostViewModel.swift */; };
+		00E655F228ABEDC600466E56 /* APIGateWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E655F128ABEDC600466E56 /* APIGateWay.swift */; };
 		00EB7ABF28A5557500D9C889 /* DataPhotosArrayParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB7ABE28A5557500D9C889 /* DataPhotosArrayParam.swift */; };
 		00ED4AA928A50DF100605A41 /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED4AA828A50DF100605A41 /* TestCollectionViewController.swift */; };
 		00EED3DC28A6BB93007239F0 /* JsonPhotoArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EED3DB28A6BB93007239F0 /* JsonPhotoArray.swift */; };
@@ -131,6 +133,8 @@
 		00C8BF53284F98F7001D0801 /* MyPhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoGallery.swift; sourceTree = "<group>"; };
 		00C8BF55284F9D7C001D0801 /* MyPhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSearchGroupViewController.swift; sourceTree = "<group>"; };
+		00E655EF28ABC68300466E56 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		00E655F128ABEDC600466E56 /* APIGateWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGateWay.swift; sourceTree = "<group>"; };
 		00EB7ABE28A5557500D9C889 /* DataPhotosArrayParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPhotosArrayParam.swift; sourceTree = "<group>"; };
 		00ED4AA828A50DF100605A41 /* TestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		00EED3DB28A6BB93007239F0 /* JsonPhotoArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPhotoArray.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		008FD06828A4E0C00083A7F1 /* PartOfPresentProjectVersion */ = {
 			isa = PBXGroup;
 			children = (
+				00E655EE28ABC65600466E56 /* PostViewModel */,
 				007F713A287F1D4A00AB7427 /* StructuresForJSONRequest */,
 				008FD06328A4DD340083A7F1 /* RealmData */,
 				007B92A7289C08C800095176 /* Extentions */,
@@ -369,12 +374,29 @@
 				00C13718286CB775008715AA /* NewsTableViewCell.xib */,
 				00C1371C286CCBDF008715AA /* AnotherNewsTableViewCell.swift */,
 				00C1371D286CCBDF008715AA /* AnotherNewsTableViewCell.xib */,
+				00E655F328AC2FFF00466E56 /* WebCell */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		00E655EE28ABC65600466E56 /* PostViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				00E655EF28ABC68300466E56 /* PostViewModel.swift */,
+				00E655F128ABEDC600466E56 /* APIGateWay.swift */,
+			);
+			path = PostViewModel;
+			sourceTree = "<group>";
+		};
+		00E655F328AC2FFF00466E56 /* WebCell */ = {
+			isa = PBXGroup;
+			children = (
 				00EED3E128A6C7AD007239F0 /* WebNewsTableViewCell.swift */,
 				00EED3E228A6C7AD007239F0 /* WebNewsTableViewCell.xib */,
 				00EED3E528A6DFE6007239F0 /* WebNewsFriendsTableViewCell.swift */,
 				00EED3E628A6DFE6007239F0 /* WebNewsFriendsTableViewCell.xib */,
 			);
-			path = News;
+			path = WebCell;
 			sourceTree = "<group>";
 		};
 		00F04198286390BB001145E4 /* NavigationControllerAnimation */ = {
@@ -629,6 +651,7 @@
 				00C8BF51284DFB52001D0801 /* SelectedPhotoCollectionViewCell.swift in Sources */,
 				00EED3DE28A6C000007239F0 /* DataForRealmPhotoArray.swift in Sources */,
 				007F7142287F5DB400AB7427 /* GroupsArrayParam.swift in Sources */,
+				00E655F028ABC68300466E56 /* PostViewModel.swift in Sources */,
 				00C13719286CB775008715AA /* NewsTableViewCell.swift in Sources */,
 				00F041B02865F18A001145E4 /* GroupGalleryViewController.swift in Sources */,
 				00C13714286C5A5E008715AA /* NewsViewController.swift in Sources */,
@@ -640,6 +663,7 @@
 				00A0CD6C284A5DEC000DA04B /* ModelPeople.swift in Sources */,
 				00D65BC3287DC82C00554E01 /* TestSearchGroupViewController.swift in Sources */,
 				00C1371E286CCBDF008715AA /* AnotherNewsTableViewCell.swift in Sources */,
+				00E655F228ABEDC600466E56 /* APIGateWay.swift in Sources */,
 				00F04109285E15D8001145E4 /* ModelMyProfile.swift in Sources */,
 				0093218A2849F881005A0308 /* AppDelegate.swift in Sources */,
 				00F041A62865DC25001145E4 /* GalleryHorisontalView.swift in Sources */,

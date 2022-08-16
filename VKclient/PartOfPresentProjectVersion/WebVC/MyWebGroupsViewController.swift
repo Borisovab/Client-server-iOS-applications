@@ -17,12 +17,13 @@ class MyWebGroupsViewController: UIViewController {
 
     let networkService = WebDataRequest()
     var groupsResponse: JSONInfo<ResponseGroups>? = nil
+    var groupsFromRealm = [GroupModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         getGroupsRequest()
-
+        groupsFromRealm = (try? networkService.restoreGroups()) ?? []
     }
 
     func getGroupsRequest() {
@@ -54,21 +55,16 @@ class MyWebGroupsViewController: UIViewController {
 extension MyWebGroupsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupsResponse?.response.items.map { $0.name }.count ?? 1
+        return groupsFromRealm.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as? TableViewCell else { return UITableViewCell() }
 
-        let nameGroup = groupsResponse?.response.items.map{ $0.name }[indexPath.row]
-        let avatarGroup = groupsResponse?.response.items.map({ $0.photo100 })[indexPath.row]
+        let nameGroup = groupsFromRealm[indexPath.row].name
+        let avatarGroup = groupsFromRealm[indexPath.row].photo100 ?? ""
 
-        print("-->-->-->-->-->-->-->-->--> TO CELL <--<--<--<--<--<--<--<--<--<--")
-        print("name: - ", nameGroup)
-        print("photo: - ", avatarGroup)
-
-        let strUrl = groupsResponse?.response.items.map { $0.photo100 }[indexPath.row] ?? ""
-        let url = URL(string: strUrl)
+        let url = URL(string: avatarGroup)
 
         cell.configureCellFriends(name: nameGroup, surname: nil)
         cell.imageView?.showImage(with: url)

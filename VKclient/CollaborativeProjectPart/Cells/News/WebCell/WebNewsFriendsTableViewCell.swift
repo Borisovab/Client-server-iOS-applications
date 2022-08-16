@@ -15,7 +15,7 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
     let photoGalleryCollectionViewCellReuseIdentifier = "PhotoGalleryCollectionViewCellReuseIdentifier"
 
     let networkService = WebDataRequest()
-    var friendsResponse: JSONInfo<ResponseFriends>? = nil
+    var friendsFromRealm = [FriendsModel]()
 
 
     func configureFriendsInNews() {
@@ -24,26 +24,11 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
         friendsInNewsVCCollectionView.delegate = self
         friendsInNewsVCCollectionView.register(UINib(nibName: registernibName, bundle: nil), forCellWithReuseIdentifier: photoGalleryCollectionViewCellReuseIdentifier)
 
-        getRequest()
+        friendsFromRealm = (try? networkService.restoreFriends()) ?? []
+        friendsInNewsVCCollectionView.reloadData()
 
     }
 
-
-    func getRequest() {
-        networkService.request() { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let friendsInfo):
-                friendsInfo.response.items.map { (name) in
-
-                    self.friendsResponse = friendsInfo
-                    self.friendsInNewsVCCollectionView.reloadData()
-                }
-            case .failure(let error):
-                print("error: - ", error)
-            }
-        }
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,23 +48,20 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
 extension WebNewsFriendsTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friendsResponse?.response.items.map { $0.firstName }.count ?? 1
+        return friendsFromRealm.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoGalleryCollectionViewCellReuseIdentifier, for: indexPath) as? PhotoGalleryCollectionViewCell else { return UICollectionViewCell() }
 
-        let strUrl = friendsResponse?.response.items.map { $0.avatar }[indexPath.row] ?? ""
-        let url = URL(string: strUrl)
+        let avatarFriend = friendsFromRealm[indexPath.row].avatar
+        let url = URL(string: avatarFriend)
 
         cell.photoImage.showImage(with: url)
 
-        cell.layer.cornerRadius = 35
+        cell.layer.cornerRadius = cell.photoImage.bounds.width/2
         cell.layer.borderWidth = 2
         cell.layer.borderColor = #colorLiteral(red: 0.874512732, green: 0.9583994746, blue: 0.9569959044, alpha: 1)
-
-
-
 
         return cell
     }

@@ -10,15 +10,6 @@ import RealmSwift
 
 //MARK: - Data for photo
 
-class RealmResponsePhotos: Object {
-    @Persisted
-    var count: Int
-
-    @Persisted
-    var items: List<RealmPhotosArrayParam>
-
-}
-
 
 class RealmPhotosArrayParam: Object {
     @Persisted

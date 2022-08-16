@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import SwiftUI
 
 class MyWebFriendsViewController: UIViewController {
 
@@ -16,6 +18,8 @@ class MyWebFriendsViewController: UIViewController {
 
     let networkService = WebDataRequest()
     var friendsResponse: JSONInfo<ResponseFriends>? = nil
+    var friendsFromRealm = [FriendsModel]()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,8 @@ class MyWebFriendsViewController: UIViewController {
 
         setupTableView()
         getRequest()
+        friendsFromRealm = (try? networkService.restoreFriends()) ?? []
+
     }
 
     func getRequest() {
@@ -54,31 +60,23 @@ class MyWebFriendsViewController: UIViewController {
 extension MyWebFriendsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendsResponse?.response.items.map { $0.firstName }.count ?? 1
+        return friendsFromRealm.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as? TableViewCell else { return UITableViewCell() }
 
-        let nameFriend = friendsResponse?.response.items.map{ $0.firstName }[indexPath.row]
-        let lastNameFriend = friendsResponse?.response.items.map{ $0.lastName }[indexPath.row]
-        let avatarFriend = friendsResponse?.response.items.map({ $0.avatar })[indexPath.row]
+        let nameFriend = friendsFromRealm[indexPath.row].firstName
+        let lastNameFriend = friendsFromRealm[indexPath.row].lastName
+        let avatarFriend = friendsFromRealm[indexPath.row].avatar
 
-        print("-->-->-->-->-->-->-->-->--> TO CELL <--<--<--<--<--<--<--<--<--<--")
-        print("name: - ", nameFriend)
-        print("name: - ", lastNameFriend)
-        print("photo: - ", avatarFriend)
-
-        let strUrl = friendsResponse?.response.items.map { $0.avatar }[indexPath.row] ?? ""
-        let url = URL(string: strUrl)
+        let url = URL(string: avatarFriend)
 
         cell.configureCellFriends(name: nameFriend, surname: lastNameFriend)
         cell.imageView?.showImage(with: url)
 
         return cell
     }
-
-
 }
 
 extension MyWebFriendsViewController: UITableViewDelegate {

@@ -28,7 +28,8 @@ class WebNewsTableViewCell: UITableViewCell {
 
     let networkService = WebDataRequest()
     var photoResponse: JSONInfo<ResponseJsonPhotos>? = nil
-    var groupsResponse: JSONInfo<ResponseGroups>? = nil
+
+    var idForMethod = 0
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -38,6 +39,9 @@ class WebNewsTableViewCell: UITableViewCell {
     }
 
     func configureNews() {
+
+        NotificationCenter.default.addObserver(self, selector: #selector(indexForCell(_:)), name: Notification.Name("idGroupFromWebGroupNewsViewControllerToWebNewsTableViewCell"), object: nil)
+
         photoAlbumCollectionView.dataSource = self
         photoAlbumCollectionView.delegate = self
         photoAlbumCollectionView.register(UINib(nibName: nameNibRegister, bundle: nil), forCellWithReuseIdentifier: PhotoGalleryCollectionViewCellReuseIdentifier)
@@ -45,12 +49,17 @@ class WebNewsTableViewCell: UITableViewCell {
         getPhotoRequest()
     }
 
+    @objc func indexForCell(_ notification: Notification) {
+        guard let idForCell = notification.object as? Int else { return }
+        idForMethod = idForCell
+    }
+
     func configureName(name: String?) {
         nameLable.text = name
     }
 
     func getPhotoRequest() {
-        networkService.requestGetPhoto { [weak self] (result) in
+        networkService.requestGetPhotoByIDGroup(id: String(idForMethod)) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let photoInfo):
@@ -107,9 +116,10 @@ extension WebNewsTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = collectionView.bounds.width
-        let whiteSpaces: CGFloat = 3
+        let whiteSpaces: CGFloat = 2
         let cellWidth = width / 2 - whiteSpaces
 
         return CGSize(width: cellWidth, height: cellWidth)
     }
 }
+

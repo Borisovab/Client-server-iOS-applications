@@ -28,7 +28,6 @@ class WebGroupNewsViewController: UIViewController {
         setupTableView()
         getRequest()
         getGroupsRequest()
-
     }
 
     func getGroupsRequest() {
@@ -107,15 +106,19 @@ extension WebGroupNewsViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: webNewsTableViewCellReuseIdentifier, for: indexPath) as? WebNewsTableViewCell else { return UITableViewCell() }
 
+            let groupId = groupsResponse?.response.items.map{$0.id}[indexPath.row]
+
+            NotificationCenter.default.post(name: Notification.Name("idGroupFromWebGroupNewsViewControllerToWebNewsTableViewCell"), object: groupId)
+
             let groupName = groupsResponse?.response.items.map {$0.name}[indexPath.row]
             let strUrl = groupsResponse?.response.items.map { $0.photo100 }[indexPath.row] ?? ""
+
             let url = URL(string: strUrl)
             cell.avatarImage.showImage(with: url)
+
             cell.configureNews()
             cell.configureName(name: groupName)
 
-
-            
             return cell
         }
     }
@@ -125,10 +128,10 @@ extension WebGroupNewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if indexPath.section == 0 {
-            return 130
+            return 90
         } else {
 
-            return 350
+            return 300
         }
 
     }
