@@ -69,9 +69,16 @@ extension WebNewsFriendsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: photoGalleryCollectionViewCellReuseIdentifier, for: indexPath) as? PhotoGalleryCollectionViewCell else { return UICollectionViewCell() }
 
+        let strUrl = friendsResponse?.response.items.map { $0.avatar }[indexPath.row] ?? ""
+        let url = URL(string: strUrl)
+
+        cell.photoImage.showImage(with: url)
+
         cell.layer.cornerRadius = 35
         cell.layer.borderWidth = 2
         cell.layer.borderColor = #colorLiteral(red: 0.874512732, green: 0.9583994746, blue: 0.9569959044, alpha: 1)
+
+
 
 
         return cell

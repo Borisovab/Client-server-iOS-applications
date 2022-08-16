@@ -9,8 +9,16 @@ import UIKit
 
 class WebNewsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var nameLable: UILabel!
+    @IBOutlet weak var avatarImage: UIImageView!{
+        didSet {
+            avatarImage.layer.cornerRadius = 25
+        }
+    }
+    @IBOutlet weak var nameLable: UILabel!{
+        didSet {
+            nameLable.textColor = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
+        }
+    }
 
     @IBOutlet weak var photoAlbumCollectionView: UICollectionView!
 
@@ -18,10 +26,43 @@ class WebNewsTableViewCell: UITableViewCell {
     let PhotoGalleryCollectionViewCellReuseIdentifier = "PhotoGalleryCollectionViewCellReuseIdentifier"
 
 
+    let networkService = WebDataRequest()
+    var photoResponse: JSONInfo<ResponseJsonPhotos>? = nil
+    var groupsResponse: JSONInfo<ResponseGroups>? = nil
+
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImage.image = nil
         nameLable.text = nil
+        photoAlbumCollectionView.reloadData()
+    }
+
+    func configureNews() {
+        photoAlbumCollectionView.dataSource = self
+        photoAlbumCollectionView.delegate = self
+        photoAlbumCollectionView.register(UINib(nibName: nameNibRegister, bundle: nil), forCellWithReuseIdentifier: PhotoGalleryCollectionViewCellReuseIdentifier)
+
+        getPhotoRequest()
+    }
+
+    func configureName(name: String?) {
+        nameLable.text = name
+    }
+
+    func getPhotoRequest() {
+        networkService.requestGetPhoto { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let photoInfo):
+                photoInfo.response.items.map { (name) in
+
+                    self.photoResponse = photoInfo
+                    self.photoAlbumCollectionView.reloadData()
+                }
+            case .failure(let error):
+                print("error: - ", error)
+            }
+        }
     }
 
 
@@ -42,14 +83,16 @@ class WebNewsTableViewCell: UITableViewCell {
 extension WebNewsTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return photoResponse?.response.items.map {$0.ownerId}.count ?? 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoGalleryCollectionViewCellReuseIdentifier, for: indexPath) as? PhotoGalleryCollectionViewCell else { return UICollectionViewCell() }
 
-//        let photo = albumForNews[indexPath.item]
-//        cell.configureGallery(photo: photo)
+        let strUrlLast = photoResponse?.response.items.map {$0.sizes.last?.url}[indexPath.item] ?? ""
+        let url = URL(string: strUrlLast)
+
+        cell.photoImage.showImage(with: url)
 
         return cell
     }
@@ -63,9 +106,9 @@ extension WebNewsTableViewCell: UICollectionViewDelegate {
 extension WebNewsTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let height = collectionView.bounds.height
-        let whiteSpaces: CGFloat = 2
-        let cellWidth = height / 1 - whiteSpaces
+        let width = collectionView.bounds.width
+        let whiteSpaces: CGFloat = 3
+        let cellWidth = width / 2 - whiteSpaces
 
         return CGSize(width: cellWidth, height: cellWidth)
     }
