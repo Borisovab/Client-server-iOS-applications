@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import SwiftUI
 
 class WebNewsFriendsTableViewCell: UITableViewCell {
 
@@ -15,8 +17,9 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
     let photoGalleryCollectionViewCellReuseIdentifier = "PhotoGalleryCollectionViewCellReuseIdentifier"
 
     let networkService = WebDataRequest()
-    var friendsFromRealm = [FriendsModel]()
+    var friendsFromRealm = [RealmFriendsArrayParam]()
 
+    private var realmNotification: NotificationToken?
 
     func configureFriendsInNews() {
 
@@ -24,9 +27,29 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
         friendsInNewsVCCollectionView.delegate = self
         friendsInNewsVCCollectionView.register(UINib(nibName: registernibName, bundle: nil), forCellWithReuseIdentifier: photoGalleryCollectionViewCellReuseIdentifier)
 
-        friendsFromRealm = (try? networkService.restoreFriends()) ?? []
+        guard let realm = try? Realm() else { return }
+        makeFriendsObserver(realm: realm)
         friendsInNewsVCCollectionView.reloadData()
+    }
 
+    private func makeFriendsObserver(realm: Realm) {
+        let objs = realm.objects(RealmFriendsArrayParam.self)
+
+        realmNotification = objs.observe({ changes in
+            switch changes {
+            case let .initial(objs):
+                self.friendsFromRealm = Array(objs)
+                self.friendsInNewsVCCollectionView.reloadData()
+            case .error(let error): print(error)
+            case let .update(friends, _, _, _):
+
+                DispatchQueue.main.async { [self] in
+                    self.friendsFromRealm = Array(friends)
+                    self.friendsInNewsVCCollectionView.reloadData()
+
+                }
+            }
+        })
     }
 
 
@@ -42,8 +65,6 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
     }
     
 }
-
-
 
 extension WebNewsFriendsTableViewCell: UICollectionViewDataSource {
 
@@ -65,9 +86,6 @@ extension WebNewsFriendsTableViewCell: UICollectionViewDataSource {
 
         return cell
     }
-
-
-
 }
 
 extension WebNewsFriendsTableViewCell: UICollectionViewDelegate {

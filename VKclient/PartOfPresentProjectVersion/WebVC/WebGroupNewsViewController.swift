@@ -122,6 +122,7 @@ extension WebGroupNewsViewController: UITableViewDataSource {
             return cell
         }
     }
+
 }
 
 extension WebGroupNewsViewController: UITableViewDelegate {

@@ -92,16 +92,19 @@ class WebNewsTableViewCell: UITableViewCell {
 extension WebNewsTableViewCell: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoResponse?.response.items.map {$0.ownerId}.count ?? 1
+        return 3
+//        return photoResponse?.response.items.map {$0.ownerId}.count ?? 1
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoGalleryCollectionViewCellReuseIdentifier, for: indexPath) as? PhotoGalleryCollectionViewCell else { return UICollectionViewCell() }
 
         let strUrlLast = photoResponse?.response.items.map {$0.sizes.last?.url}[indexPath.item] ?? ""
+
         let url = URL(string: strUrlLast)
 
         cell.photoImage.showImage(with: url)
+
 
         return cell
     }
@@ -117,7 +120,7 @@ extension WebNewsTableViewCell: UICollectionViewDelegateFlowLayout {
 
         let width = collectionView.bounds.width
         let whiteSpaces: CGFloat = 2
-        let cellWidth = width / 2 - whiteSpaces
+        let cellWidth = width / 3 - whiteSpaces
 
         return CGSize(width: cellWidth, height: cellWidth)
     }
