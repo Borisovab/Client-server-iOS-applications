@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
+import SwiftUI
+
 
 class MyWebGroupsViewController: UIViewController {
-
 
     @IBOutlet weak var myGroupsTableView: UITableView!
 
@@ -17,13 +19,30 @@ class MyWebGroupsViewController: UIViewController {
 
     let networkService = WebDataRequest()
     var groupsResponse: JSONInfo<ResponseGroups>? = nil
-    var groupsFromRealm = [GroupModel]()
+    var groupsFromRealm = [RealmGroupsArrayParam]()
+
+    private var realmNotification: NotificationToken?
+    private var firstGroupName: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         getGroupsRequest()
-        groupsFromRealm = (try? networkService.restoreGroups()) ?? []
+
+        guard let realm = try? Realm() else { return }
+        makeGroupsObserver(realm: realm)
+        myGroupsTableView.reloadData()
+
+        firstGroupName = realm
+            .objects(RealmGroupsArrayParam.self)
+            .first?
+            .observe(keyPaths: [], { (changes: ObjectChange<RealmGroupsArrayParam>) in
+                switch changes {
+                case .error(let error): print(error)
+                case .change(let value, let propertiesArray): print("\(value.name) --> \(propertiesArray)")
+                case .deleted: print("delited")
+                }
+            })
     }
 
     func getGroupsRequest() {
@@ -49,6 +68,33 @@ class MyWebGroupsViewController: UIViewController {
         myGroupsTableView.delegate = self
     }
 
+
+    private func makeGroupsObserver(realm: Realm) {
+        let objs = realm.objects(RealmGroupsArrayParam.self)
+
+        realmNotification = objs.observe({ changes in
+            switch changes {
+            case let .initial(objs):
+                self.groupsFromRealm = Array(objs)
+                self.myGroupsTableView.reloadData()
+            case .error(let error): print(error)
+            case let .update(groups, deletions, insertions, modifications):
+
+                DispatchQueue.main.async { [self] in
+                    self.groupsFromRealm = Array(groups)
+
+                    myGroupsTableView.beginUpdates()
+
+                    myGroupsTableView.deleteRows(at: deletions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+                    myGroupsTableView.insertRows(at: insertions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+                    myGroupsTableView.reloadRows(at: modifications.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+
+                    myGroupsTableView.endUpdates()
+                }
+            }
+        })
+    }
+
 }
 
 
@@ -63,7 +109,7 @@ extension MyWebGroupsViewController: UITableViewDataSource {
 
         let nameGroup = groupsFromRealm[indexPath.row].name
         let avatarGroup = groupsFromRealm[indexPath.row].photo100 ?? ""
-
+        
         let url = URL(string: avatarGroup)
 
         cell.configureCellFriends(name: nameGroup, surname: nil)
@@ -71,8 +117,6 @@ extension MyWebGroupsViewController: UITableViewDataSource {
 
         return cell
     }
-
-
 }
 
 extension MyWebGroupsViewController: UITableViewDelegate {
