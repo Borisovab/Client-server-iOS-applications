@@ -11,15 +11,6 @@ import RealmSwift
 
 //MARK: - Data for groups
 
-class RealmResponseGroups: Object {
-    @Persisted
-    var count: Int
-
-    @Persisted
-    var items: List<RealmGroupsArrayParam>
-
-}
-
 
 class RealmGroupsArrayParam: Object {
     @Persisted

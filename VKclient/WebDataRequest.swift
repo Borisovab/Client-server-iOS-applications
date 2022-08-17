@@ -73,6 +73,22 @@ class WebDataRequest {
         }
     }
 
+    func restoreFriends() throws -> [FriendsModel] {
+        let realm = try Realm()
+
+        let objects = realm.objects(RealmFriendsArrayParam.self)
+        let posts = Array(
+            objects.map {
+                FriendsModel(
+                    avatar: $0.avatar,
+                    firstName: $0.firstName,
+                    lastName: $0.lastName
+                )
+            }
+        )
+        return posts
+    }
+
 
     //MARK: - method for get groups parameters
 
@@ -132,76 +148,23 @@ class WebDataRequest {
         }
     }
 
+    func restoreGroups() throws -> [GroupModel] {
+        let realm = try Realm()
 
-
-    //MARK: - method for getAll photo parameters
-
-    func requestPhoto(completion: @escaping (Result<JSONInfo<ResponsePhotos>, Error>) -> Void) {
-
-        var components = URLComponents(string: "https://api.vk.com/method/photos.getAll")
-        components?.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.sharedInstance.token),
-            URLQueryItem(name: "owner_id", value: "183432082"),
-            URLQueryItem(name: "no_service_albums", value: "1"),
-            URLQueryItem(name: "v", value: "5.131")
-        ]
-        guard let url = components?.url else { return }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("some error")
-                    completion(.failure(error))
-
-                    return
-                }
-                guard let data = data else { return }
-
-                do {
-                    let decoder = JSONDecoder()
-                    let model = try decoder.decode(JSONInfo<ResponsePhotos>.self, from: data)
-                    completion(.success(model))
-
-                    let realmPosts: [RealmPhotosArrayParam] = model.response.items.map { post in
-                        let realmPost = RealmPhotosArrayParam()
-                        realmPost.albumId = post.albumId
-                        realmPost.id = post.id
-
-                        let realmSizes: [SizesPhotos] = post.sizes.map { size in
-                            let realmSize = SizesPhotos()
-                            realmSize.height = size.height
-                            realmSize.url = size.url
-                            realmSize.type = size.type
-                            realmSize.width = size.width
-                            return realmSize
-                        }
-
-                        realmPost.sizes.append(objectsIn: realmSizes)
-                        return realmPost
-                    }
-                    self.saveForPhotos(posts: realmPosts)
-                } catch {
-                    print(error)
-                    completion(.failure(error))
-                }
+        let objects = realm.objects(RealmGroupsArrayParam.self)
+        let posts = Array(
+            objects.map {
+                GroupModel(
+                    id: $0.id,
+                    name: $0.name,
+                    photo100: $0.photo100
+                )
             }
-        }.resume()
+        )
+        return posts
     }
 
-    private func saveForPhotos(posts: [RealmPhotosArrayParam]) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                posts.forEach { realm.add($0)}
-            }
-        } catch {
-            print(error)
-        }
-    }
-
-
-
-    //MARK: - method for get photo parameters
+    //MARK: - method for get photo parameters (в проекте сейчас используется этот метод)
 
     func requestGetPhoto(completion: @escaping (Result<JSONInfo<ResponseJsonPhotos>, Error>) -> Void) {
 
@@ -264,75 +227,44 @@ class WebDataRequest {
 
 
 
+    //MARK: - method for get photo parameters to News VC (в проекте сейчас используется этот метод)
 
+    func requestGetPhotoByIDGroup(id: String, completion: @escaping (Result<JSONInfo<ResponseJsonPhotos>, Error>) -> Void) {
 
+        var components = URLComponents(string: "https://api.vk.com/method/photos.get")
+        components?.queryItems = [
+            URLQueryItem(name: "access_token", value: Session.sharedInstance.token),
+            URLQueryItem(name: "owner_id", value: "-" + id),
+            URLQueryItem(name: "album_id", value: "wall"),
+            URLQueryItem(name: "v", value: "5.131")
+        ]
+        guard let url = components?.url else { return }
 
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("some error")
+                    completion(.failure(error))
 
+                    return
+                }
+                guard let data = data else { return }
 
+                do {
+                    let decoder = JSONDecoder()
+                    let model = try decoder.decode(JSONInfo<ResponseJsonPhotos>.self, from: data)
+                    completion(.success(model))
 
-
-
-//MARK: - method for getAll photo parameters (запаска!!!!!!)
-//
-//func requestPhoto(completion: @escaping (Result<JSONInfo<ResponsePhotos>, Error>) -> Void) {
-//
-//    var components = URLComponents(string: "https://api.vk.com/method/photos.getAll")
-//    components?.queryItems = [
-//        URLQueryItem(name: "access_token", value: Session.sharedInstance.token),
-//        URLQueryItem(name: "owner_id", value: "-121214684"),
-//        URLQueryItem(name: "no_service_albums", value: "1"),
-//        URLQueryItem(name: "v", value: "5.131")
-//    ]
-//    guard let url = components?.url else { return }
-//
-//    URLSession.shared.dataTask(with: url) { data, response, error in
-//        DispatchQueue.main.async {
-//            if let error = error {
-//                print("some error")
-//                completion(.failure(error))
-//
-//                return
-//            }
-//            guard let data = data else { return }
-//
-//            do {
-//                let decoder = JSONDecoder()
-//                let model = try decoder.decode(JSONInfo<ResponsePhotos>.self, from: data)
-//                completion(.success(model))
-//
-//                let realmPosts: [RealmPhotosArrayParam] = model.response.items.map { post in
-//                    let realmPost = RealmPhotosArrayParam()
-//                    realmPost.albumId = post.albumId
-//                    realmPost.id = post.id
-//
-//                    let realmSizes: [SizesPhotos] = post.sizes.map { size in
-//                        let realmSize = SizesPhotos()
-//                        realmSize.height = size.height
-//                        realmSize.url = size.url
-//                        realmSize.type = size.type
-//                        realmSize.width = size.width
-//                        return realmSize
-//                    }
-//
-//                    realmPost.sizes.append(objectsIn: realmSizes)
-//                    return realmPost
-//                }
-//                self.saveForPhotos(posts: realmPosts)
-//            } catch {
-//                print(error)
-//                completion(.failure(error))
-//            }
-//        }
-//    }.resume()
-//}
-//
-//private func saveForPhotos(posts: [RealmPhotosArrayParam]) {
-//    do {
-//        let realm = try Realm()
-//        try realm.write {
-//            posts.forEach { realm.add($0)}
-//        }
-//    } catch {
-//        print(error)
-//    }
+                } catch {
+                    print(error)
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
 }
+
+
+
+
+

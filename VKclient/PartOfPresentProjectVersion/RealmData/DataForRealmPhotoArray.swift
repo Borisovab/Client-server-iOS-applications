@@ -8,15 +8,6 @@
 import Foundation
 import RealmSwift
 
-class DataRealmResponsePhotos: Object {
-    @Persisted
-    var count: Int
-
-    @Persisted
-    var items: List<RealmPhotosArray>
-}
-
-
 class RealmPhotosArray: Object {
     @Persisted
     var ownerId: Int
