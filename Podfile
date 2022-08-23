@@ -7,5 +7,7 @@ target 'VKclient' do
 
   # Pods for VKclient
   pod 'RealmSwift', '~>10'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
 
 end

@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         print("file path")
         print(Realm.Configuration.defaultConfiguration.fileURL)
+
+        FirebaseApp.configure()
 
         return true
     }

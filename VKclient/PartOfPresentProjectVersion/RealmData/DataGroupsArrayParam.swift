@@ -13,7 +13,8 @@ import RealmSwift
 
 
 class RealmGroupsArrayParam: Object {
-    @Persisted
+    @Persisted(primaryKey: true)
+//    @Persisted
     var id: Int
 
     @Persisted
