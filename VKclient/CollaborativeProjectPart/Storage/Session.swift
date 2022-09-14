@@ -14,6 +14,10 @@ class Session {
     private init() {}
 
     var token = ""
+    var userId = 777
+
+    var userParam = (id:"", firstName:"", lastName:"")
+
     var Id = 0
     var friendsIDArray = [Int]()
 

@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
+import FirebaseFirestore
 
 class WebGroupNewsViewController: UIViewController {
 
+    let database = Firestore.firestore()
+
     @IBOutlet weak var webGroupNewsTableView: UITableView!
+
+    private var realmNotification: NotificationToken?
 
     let nameNibIdentifier = "WebNewsFriendsTableViewCell"
     let webNewsFriendsTableViewCellReuseIdentifier = "webNewsFriendsTableViewCellReuseIdentifier"
@@ -21,13 +27,18 @@ class WebGroupNewsViewController: UIViewController {
     let networkService = WebDataRequest()
     var friendsResponse: JSONInfo<ResponseFriends>? = nil
     var groupsResponse: JSONInfo<ResponseGroups>? = nil
+    var usersResponse: UserArray? = nil
+    var userForRealm = [DataAboutUser]()
+    var groupsFromRealm = [RealmGroupsArrayParam]()
 
+    let user = DataAboutUser()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         getRequest()
         getGroupsRequest()
+        getUserRequest()
     }
 
     func getGroupsRequest() {
@@ -55,12 +66,33 @@ class WebGroupNewsViewController: UIViewController {
 
                     self.friendsResponse = friendsInfo
                     self.webGroupNewsTableView.reloadData()
+
                 }
             case .failure(let error):
                 print("error: - ", error)
             }
         }
     }
+
+    func getUserRequest() {
+        networkService.requestUser() { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let userInfo):
+                userInfo.response.map { (name) in
+
+                    self.usersResponse = userInfo
+                    let aaa = userInfo.response.map{$0.id}
+                    Session.sharedInstance.userId = aaa[0]
+                    self.webGroupNewsTableView.reloadData()
+
+                }
+            case .failure(let error):
+                print("error: - ", error)
+            }
+        }
+    }
+
 
     private func setupTableView() {
         webGroupNewsTableView.register(UINib(nibName: nameNibIdentifier, bundle: nil), forCellReuseIdentifier: webNewsFriendsTableViewCellReuseIdentifier)
@@ -122,6 +154,7 @@ extension WebGroupNewsViewController: UITableViewDataSource {
             return cell
         }
     }
+
 }
 
 extension WebGroupNewsViewController: UITableViewDelegate {

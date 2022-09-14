@@ -49,8 +49,6 @@ class TestCollectionViewController: UIViewController {
         testCollectionView.dataSource = self
         testCollectionView.delegate = self
     }
-
-
 }
 
 
@@ -71,8 +69,6 @@ extension TestCollectionViewController: UICollectionViewDataSource {
 
         return cell
     }
-
-
 }
 
 extension TestCollectionViewController: UICollectionViewDelegate {

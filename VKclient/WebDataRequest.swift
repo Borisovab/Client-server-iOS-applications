@@ -11,6 +11,63 @@ import SwiftUI
 
 class WebDataRequest {
 
+    //MARK: - method for get user's parameters
+
+    func requestUser(completion: @escaping (Result<UserArray, Error>) -> Void) {
+
+        var components = URLComponents(string: "https://api.vk.com/method/users.get")
+        components?.queryItems = [
+            URLQueryItem(name: "access_token", value: Session.sharedInstance.token),
+            URLQueryItem(name: "v", value: "5.131")
+        ]
+
+        guard let url = components?.url else { return }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("some error")
+
+                    completion(.failure(error))
+                    return
+                }
+                guard let data = data else { return }
+
+                do {
+                    let decoder = JSONDecoder()
+                    let model = try decoder.decode(UserArray.self, from: data)
+                    completion(.success(model))
+
+                    let realmPosts: [DataAboutUser] = model.response.map { post in
+                        let realmPost = DataAboutUser()
+                        realmPost.id = post.id
+                        realmPost.firstName = post.firstName
+                        realmPost.lastName = post.lastName
+
+                        return realmPost
+                    }
+                    self.saveForUsers(posts: realmPosts)
+
+                } catch {
+                    print(error)
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+
+    private func saveForUsers(posts: [DataAboutUser]) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                posts.forEach { realm.add($0, update: .all) }
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+
     //MARK: - method for get friend's parameters
 
     func request(completion: @escaping (Result<JSONInfo<ResponseFriends>, Error>) -> Void) {
@@ -66,28 +123,13 @@ class WebDataRequest {
         do {
             let realm = try Realm()
             try realm.write {
-                posts.forEach { realm.add($0) }
+                posts.forEach { realm.add($0, update: .all) }
             }
         } catch {
             print(error)
         }
     }
 
-    func restoreFriends() throws -> [FriendsModel] {
-        let realm = try Realm()
-
-        let objects = realm.objects(RealmFriendsArrayParam.self)
-        let posts = Array(
-            objects.map {
-                FriendsModel(
-                    avatar: $0.avatar,
-                    firstName: $0.firstName,
-                    lastName: $0.lastName
-                )
-            }
-        )
-        return posts
-    }
 
 
     //MARK: - method for get groups parameters
@@ -141,7 +183,7 @@ class WebDataRequest {
         do {
             let realm = try Realm()
             try realm.write {
-                posts.forEach { realm.add($0) }
+                posts.forEach { realm.add($0, update: .all) }
             }
         } catch {
             print(error)
@@ -218,7 +260,7 @@ class WebDataRequest {
         do {
             let realm = try Realm()
             try realm.write {
-                posts.forEach { realm.add($0)}
+                posts.forEach { realm.add($0, update: .all)}
             }
         } catch {
             print(error)

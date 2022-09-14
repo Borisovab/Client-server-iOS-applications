@@ -7,12 +7,11 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class WebLoginViewController: UIViewController {
 
     @IBOutlet weak var loginWebView: WKWebView!
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +34,7 @@ class WebLoginViewController: UIViewController {
 
         loginWebView.load(request)
     }
+
 }
 
 extension WebLoginViewController: WKNavigationDelegate {

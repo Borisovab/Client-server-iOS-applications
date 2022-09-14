@@ -12,7 +12,8 @@ import RealmSwift
 
 
 class RealmFriendsArrayParam: Object {
-    @Persisted
+    @Persisted(primaryKey: true)
+//    @Persisted
     var id: Int
 
     @Persisted
