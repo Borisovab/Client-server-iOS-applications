@@ -34,3 +34,16 @@ class RealmFriendsArrayParam: Object {
     @Persisted
     var isClosed: Bool?
 }
+
+
+extension RealmFriendsArrayParam {
+    func fillData(with model: FriendsArrayParam) {
+        id = model.id
+        avatar = model.avatar
+        trackCode = model.trackCode
+        firstName = model.firstName
+        lastName = model.lastName
+        canAccessClosed = model.canAccessClosed
+        isClosed = model.isClosed
+    }
+}

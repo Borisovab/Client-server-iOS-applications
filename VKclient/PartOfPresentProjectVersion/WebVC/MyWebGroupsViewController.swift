@@ -45,6 +45,7 @@ class MyWebGroupsViewController: UIViewController {
                 case .error(let error): print(error)
                 case .change(let value, let propertiesArray): print("\(value.name) --> \(propertiesArray)")
                 case .deleted: print("delited")
+
                 }
             })
     }
