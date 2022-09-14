@@ -1241,8 +1241,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="arm-vd-lVg" kind="relationship" relationship="viewControllers" id="IxG-wl-3bC"/>
                         <segue destination="UJV-4N-CnO" kind="relationship" relationship="viewControllers" id="Vzv-9D-zwk"/>
+                        <segue destination="arm-vd-lVg" kind="relationship" relationship="viewControllers" id="IxG-wl-3bC"/>
                         <segue destination="MjW-ZY-7IX" kind="relationship" relationship="viewControllers" id="jap-Tg-thO"/>
                         <segue destination="Pcg-7f-2hI" kind="relationship" relationship="viewControllers" id="Z18-Rv-NIx"/>
                     </connections>

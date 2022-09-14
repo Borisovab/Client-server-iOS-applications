@@ -18,7 +18,7 @@ class TestCollectionViewController: UIViewController {
     var photoResponse: JSONInfo<ResponseJsonPhotos>? = nil
     let test = SomeMethods()
 
-    var groupsResponse: JSONInfo<ResponseGroups>? = nil
+//    var groupsResponse: JSONInfo<ResponseGroups>? = nil
     var groupIdArray = [String]()
 
     override func viewDidLoad() {

@@ -72,41 +72,6 @@ class SomeMethods {
         }.resume()
     }
 
-    //MARK: - photos.getAll
-    func sendPhotoGetAllRequest() {
-
-        var components = URLComponents(string: "https://api.vk.com/method/photos.getAll")
-        components?.queryItems = [
-            URLQueryItem(name: "access_token", value: Session.sharedInstance.token),
-            URLQueryItem(name: "owner_id", value: "183432082"),
-            URLQueryItem(name: "no_service_albums", value: "1"),
-            URLQueryItem(name: "v", value: "5.131")
-        ]
-
-        guard let url = components?.url else { return }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            print("response --> \(response)")
-            guard let data = data else { return }
-
-            do {
-                let decoder = JSONDecoder()
-                let model = try decoder.decode(JSONInfo<ResponsePhotos>.self, from: data)
-                let myfriendsPhoto = model.response.items.map { $0.sizes.map { $0.url} }
-                print(myfriendsPhoto)
-            } catch {
-                print(error)
-            }
-                        print("Body photos.getAll --> \(String(data: data, encoding: .utf8))")
-
-        }.resume()
-    }
-
-
-
-
-
-
 
     //MARK: - groups.search
     func sendGroupsSearchGetRequest(Str: String) {

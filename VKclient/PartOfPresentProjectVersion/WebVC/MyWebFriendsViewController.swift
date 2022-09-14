@@ -67,8 +67,10 @@ class MyWebFriendsViewController: UIViewController {
         realmNotification = objs.observe({ changes in
             switch changes {
             case let .initial(objs):
-                self.friendsFromRealm = Array(objs)
-                self.myWebFriendsTableView.reloadData()
+                DispatchQueue.main.async { [self] in
+                    self.friendsFromRealm = Array(objs)
+                    self.myWebFriendsTableView.reloadData()
+                }
             case .error(let error): print(error)
             case let .update(friends, deletions, insertions, modifications):
 
@@ -77,13 +79,13 @@ class MyWebFriendsViewController: UIViewController {
 
                     myWebFriendsTableView.reloadData()
 
-//                    myWebFriendsTableView.beginUpdates()
-//
-//                    myWebFriendsTableView.deleteRows(at: deletions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
-//                    myWebFriendsTableView.insertRows(at: insertions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
-//                    myWebFriendsTableView.reloadRows(at: modifications.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
-//
-//                    myWebFriendsTableView.endUpdates()
+                    //                    myWebFriendsTableView.beginUpdates()
+                    //
+                    //                    myWebFriendsTableView.deleteRows(at: deletions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+                    //                    myWebFriendsTableView.insertRows(at: insertions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+                    //                    myWebFriendsTableView.reloadRows(at: modifications.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+                    //
+                    //                    myWebFriendsTableView.endUpdates()
 
 
                 }

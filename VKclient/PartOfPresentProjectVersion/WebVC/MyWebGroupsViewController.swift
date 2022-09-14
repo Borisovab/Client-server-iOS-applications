@@ -13,6 +13,11 @@ import FirebaseFirestore
 
 class MyWebGroupsViewController: UIViewController {
 
+    let gateway = GroupsGateway(
+        network: NetworkController(),
+        dataBase: RealmStorage()
+    )
+
     let database = Firestore.firestore()
 
     @IBOutlet weak var myGroupsTableView: UITableView!
@@ -20,10 +25,11 @@ class MyWebGroupsViewController: UIViewController {
     let registerNameForNib = "TableViewCell"
     let tableViewCellReuseIdentifier = "tableViewCellReuseIdentifier"
 
-    let networkService = WebDataRequest()
+//    let networkService = WebDataRequest()
     var groupsResponse: JSONInfo<ResponseGroups>? = nil
     var groupsFromRealm = [RealmGroupsArrayParam]()
     var usersFromRealm = DataAboutUser()
+    var groupsViewPosts = [GroupsPostViewModel]()
 
     private var realmNotification: NotificationToken?
     private var firstGroupName: NotificationToken?
@@ -31,7 +37,15 @@ class MyWebGroupsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        getGroupsRequest()
+
+        gateway.loadPosts{ [weak self] post in
+            guard let self = self else { return }
+            self.groupsViewPosts = post
+        }
+
+
+
+//        getGroupsRequest()
 
         guard let realm = try? Realm() else { return }
         makeGroupsObserver(realm: realm)
@@ -50,21 +64,21 @@ class MyWebGroupsViewController: UIViewController {
             })
     }
 
-    func getGroupsRequest() {
-        networkService.requestForGroups { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let groupsInfo):
-                groupsInfo.response.items.map { (name) in
-
-                    self.groupsResponse = groupsInfo
-                    self.myGroupsTableView.reloadData()
-                }
-            case .failure(let error):
-                print("error: - ", error)
-            }
-        }
-    }
+//    func getGroupsRequest() {
+//        networkService.requestForGroups { [weak self] (result) in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let groupsInfo):
+//                groupsInfo.response.items.map { (name) in
+//
+//                    self.groupsResponse = groupsInfo
+//                    self.myGroupsTableView.reloadData()
+//                }
+//            case .failure(let error):
+//                print("error: - ", error)
+//            }
+//        }
+//    }
 
     private func setupTableView() {
         myGroupsTableView.register(UINib(nibName: registerNameForNib, bundle: nil), forCellReuseIdentifier: tableViewCellReuseIdentifier)
@@ -87,13 +101,15 @@ class MyWebGroupsViewController: UIViewController {
                 DispatchQueue.main.async { [self] in
                     self.groupsFromRealm = Array(groups)
 
-                    myGroupsTableView.beginUpdates()
+                    myGroupsTableView.reloadData()
 
-                    myGroupsTableView.deleteRows(at: deletions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
-                    myGroupsTableView.insertRows(at: insertions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
-                    myGroupsTableView.reloadRows(at: modifications.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
-
-                    myGroupsTableView.endUpdates()
+//                    myGroupsTableView.beginUpdates()
+//
+//                    myGroupsTableView.deleteRows(at: deletions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+//                    myGroupsTableView.insertRows(at: insertions.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+//                    myGroupsTableView.reloadRows(at: modifications.map ({IndexPath(row: $0, section: 0)}), with: .automatic)
+//
+//                    myGroupsTableView.endUpdates()
                 }
             }
 
@@ -115,14 +131,14 @@ class MyWebGroupsViewController: UIViewController {
 extension MyWebGroupsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupsFromRealm.count
+        return groupsViewPosts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as? TableViewCell else { return UITableViewCell() }
 
-        let nameGroup = groupsFromRealm[indexPath.row].name
-        let avatarGroup = groupsFromRealm[indexPath.row].photo100 ?? ""
+        let nameGroup = groupsViewPosts[indexPath.row].name
+        let avatarGroup = groupsViewPosts[indexPath.row].avatar 
         
         let url = URL(string: avatarGroup)
 

@@ -11,10 +11,12 @@ import Foundation
 
 
 struct JsonPhotoArray: Decodable {
+    let albumId: Int
     let ownerId: Int
     let sizes: [GetSizePhoto]
 
     enum CodingKeys: String, CodingKey {
+        case albumId = "album_id"
         case ownerId = "owner_id"
         case sizes
     }

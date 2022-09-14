@@ -25,12 +25,6 @@ struct ResponseGroups: Decodable {
 }
 
 
-struct ResponsePhotos: Decodable {
-    let count: Int
-    let items: [PhotosArrayParam]
-}
-
-
 struct ResponseJsonPhotos: Decodable {
     let count: Int
     let items: [JsonPhotoArray]
