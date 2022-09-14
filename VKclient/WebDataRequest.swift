@@ -206,7 +206,7 @@ class WebDataRequest {
         return posts
     }
 
-    //MARK: - method for get photo parameters (в проекте сейчас используется этот метод)
+    //MARK: - method for get photo parameters (в проекте сейчас используется этот метод в TestCollectionViewController)
 
     func requestGetPhoto(completion: @escaping (Result<JSONInfo<ResponseJsonPhotos>, Error>) -> Void) {
 
@@ -236,6 +236,7 @@ class WebDataRequest {
 
                     let realmPosts: [RealmPhotosArray] = model.response.items.map { post in
                         let realmPost = RealmPhotosArray()
+                        realmPost.albumId = post.albumId
                         realmPost.ownerId = post.ownerId
 
                         let realmSizes: [DataSizePhoto] = post.sizes.map { size in
@@ -269,7 +270,7 @@ class WebDataRequest {
 
 
 
-    //MARK: - method for get photo parameters to News VC (в проекте сейчас используется этот метод)
+    //MARK: - method for get photo parameters to News VC (в проекте, сейчас используется этот метод в ячейке WebNewsTableViewCell)
 
     func requestGetPhotoByIDGroup(id: String, completion: @escaping (Result<JSONInfo<ResponseJsonPhotos>, Error>) -> Void) {
 

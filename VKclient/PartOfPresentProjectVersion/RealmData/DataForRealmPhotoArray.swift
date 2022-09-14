@@ -9,7 +9,10 @@ import Foundation
 import RealmSwift
 
 class RealmPhotosArray: Object {
-//    @Persisted(primaryKey: true)
+
+    @Persisted(primaryKey: true)
+    var albumId: Int
+
     @Persisted
     var ownerId: Int
 
@@ -23,3 +26,4 @@ class DataSizePhoto: Object {
     var url: String?
 
 }
+

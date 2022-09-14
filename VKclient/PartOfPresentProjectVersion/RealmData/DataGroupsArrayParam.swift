@@ -26,3 +26,12 @@ class RealmGroupsArrayParam: Object {
     @Persisted
     var photo100: String?
 }
+
+extension RealmGroupsArrayParam {
+    func fillData(with model: GroupsArrayParam) {
+        id = model.id
+        descriptionGroup = model.descriptionGroup
+        name = model.name
+        photo100 = model.photo100
+    }
+}

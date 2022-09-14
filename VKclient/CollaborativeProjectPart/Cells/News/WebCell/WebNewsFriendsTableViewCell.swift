@@ -38,8 +38,10 @@ class WebNewsFriendsTableViewCell: UITableViewCell {
         realmNotification = objs.observe({ changes in
             switch changes {
             case let .initial(objs):
-                self.friendsFromRealm = Array(objs)
-                self.friendsInNewsVCCollectionView.reloadData()
+                DispatchQueue.main.async { [self] in
+                    self.friendsFromRealm = Array(objs)
+                    self.friendsInNewsVCCollectionView.reloadData()
+                }
             case .error(let error): print(error)
             case let .update(friends, _, _, _):
 
