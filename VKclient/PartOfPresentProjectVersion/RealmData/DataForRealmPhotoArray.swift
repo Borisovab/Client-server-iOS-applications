@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class RealmPhotosArray: Object {
+//    @Persisted(primaryKey: true)
     @Persisted
     var ownerId: Int
 

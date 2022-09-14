@@ -8,6 +8,9 @@
 import Foundation
 
 
+
+
+
 struct FriendsModel {
     let avatar: String
     let firstName: String

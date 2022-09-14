@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		00182EEE2875D429007978DF /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00182EED2875D429007978DF /* Session.swift */; };
 		00183F182859FA7400D88F05 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00183F172859FA7400D88F05 /* TabBarController.swift */; };
+		001AA13428B9044000FF9B42 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AA13328B9044000FF9B42 /* NetworkController.swift */; };
+		001AA13728B906D800FF9B42 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AA13628B906D800FF9B42 /* RealmStorage.swift */; };
+		001AA13A28B9072900FF9B42 /* NetworkerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AA13928B9072900FF9B42 /* NetworkerProtocol.swift */; };
+		001AA13C28B907CC00FF9B42 /* DataStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AA13B28B907CC00FF9B42 /* DataStorageProtocol.swift */; };
+		001AA13F28B90D3600FF9B42 /* FriendsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AA13E28B90D3600FF9B42 /* FriendsGateway.swift */; };
+		001AA14228B911E700FF9B42 /* FriendsPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AA14128B911E700FF9B42 /* FriendsPostViewModel.swift */; };
 		001E0730285C7F6700D33D4A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001E072F285C7F6700D33D4A /* Storage.swift */; };
 		0051064528AD8DC400AB3B1C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0051064428AD8DC400AB3B1C /* GoogleService-Info.plist */; };
 		0052A46A284A049D00FC061C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0052A468284A049D00FC061C /* TableViewCell.swift */; };
@@ -62,7 +68,6 @@
 		00D6453728AE919E000CD749 /* MethodsForWorkingWithFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D6453628AE919E000CD749 /* MethodsForWorkingWithFirebase.swift */; };
 		00D65BC3287DC82C00554E01 /* TestSearchGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */; };
 		00E655F028ABC68300466E56 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E655EF28ABC68300466E56 /* PostViewModel.swift */; };
-		00E655F228ABEDC600466E56 /* APIGateWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E655F128ABEDC600466E56 /* APIGateWay.swift */; };
 		00EB7ABF28A5557500D9C889 /* DataPhotosArrayParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB7ABE28A5557500D9C889 /* DataPhotosArrayParam.swift */; };
 		00ED4AA928A50DF100605A41 /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ED4AA828A50DF100605A41 /* TestCollectionViewController.swift */; };
 		00EED3DC28A6BB93007239F0 /* JsonPhotoArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EED3DB28A6BB93007239F0 /* JsonPhotoArray.swift */; };
@@ -89,6 +94,12 @@
 /* Begin PBXFileReference section */
 		00182EED2875D429007978DF /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		00183F172859FA7400D88F05 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		001AA13328B9044000FF9B42 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		001AA13628B906D800FF9B42 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
+		001AA13928B9072900FF9B42 /* NetworkerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerProtocol.swift; sourceTree = "<group>"; };
+		001AA13B28B907CC00FF9B42 /* DataStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageProtocol.swift; sourceTree = "<group>"; };
+		001AA13E28B90D3600FF9B42 /* FriendsGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsGateway.swift; sourceTree = "<group>"; };
+		001AA14128B911E700FF9B42 /* FriendsPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPostViewModel.swift; sourceTree = "<group>"; };
 		001E072F285C7F6700D33D4A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		0051064428AD8DC400AB3B1C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0052A468284A049D00FC061C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -144,7 +155,6 @@
 		00D6453628AE919E000CD749 /* MethodsForWorkingWithFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodsForWorkingWithFirebase.swift; sourceTree = "<group>"; };
 		00D65BC2287DC82C00554E01 /* TestSearchGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSearchGroupViewController.swift; sourceTree = "<group>"; };
 		00E655EF28ABC68300466E56 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
-		00E655F128ABEDC600466E56 /* APIGateWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGateWay.swift; sourceTree = "<group>"; };
 		00EB7ABE28A5557500D9C889 /* DataPhotosArrayParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPhotosArrayParam.swift; sourceTree = "<group>"; };
 		00ED4AA828A50DF100605A41 /* TestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		00EED3DB28A6BB93007239F0 /* JsonPhotoArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPhotoArray.swift; sourceTree = "<group>"; };
@@ -182,6 +192,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001AA13528B9067900FF9B42 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				001AA13328B9044000FF9B42 /* NetworkController.swift */,
+				001AA13928B9072900FF9B42 /* NetworkerProtocol.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		001AA13828B906DE00FF9B42 /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				001AA13628B906D800FF9B42 /* RealmStorage.swift */,
+				001AA13B28B907CC00FF9B42 /* DataStorageProtocol.swift */,
+			);
+			path = DataStorage;
+			sourceTree = "<group>";
+		};
+		001AA13D28B90CF400FF9B42 /* DefaultGateway */ = {
+			isa = PBXGroup;
+			children = (
+				001AA13E28B90D3600FF9B42 /* FriendsGateway.swift */,
+			);
+			path = DefaultGateway;
+			sourceTree = "<group>";
+		};
+		001AA14028B90D6000FF9B42 /* WorkingWithData */ = {
+			isa = PBXGroup;
+			children = (
+				00E655EE28ABC65600466E56 /* PostViewModel */,
+				001AA13528B9067900FF9B42 /* Network */,
+				001AA13828B906DE00FF9B42 /* DataStorage */,
+				001AA13D28B90CF400FF9B42 /* DefaultGateway */,
+			);
+			path = WorkingWithData;
+			sourceTree = "<group>";
+		};
 		001E0731285C804700D33D4A /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,11 +338,11 @@
 		008FD06828A4E0C00083A7F1 /* PartOfPresentProjectVersion */ = {
 			isa = PBXGroup;
 			children = (
-				00E655EE28ABC65600466E56 /* PostViewModel */,
 				007F713A287F1D4A00AB7427 /* StructuresForJSONRequest */,
 				008FD06328A4DD340083A7F1 /* RealmData */,
 				00CE640628ADA5320098660D /* Firebase */,
 				007B92A7289C08C800095176 /* Extentions */,
+				001AA14028B90D6000FF9B42 /* WorkingWithData */,
 				0082E222287C8E470030528A /* WebMethods */,
 				007B92A4289BF18200095176 /* WebVC */,
 			);
@@ -405,8 +452,8 @@
 		00E655EE28ABC65600466E56 /* PostViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				00E655F128ABEDC600466E56 /* APIGateWay.swift */,
 				00E655EF28ABC68300466E56 /* PostViewModel.swift */,
+				001AA14128B911E700FF9B42 /* FriendsPostViewModel.swift */,
 			);
 			path = PostViewModel;
 			sourceTree = "<group>";
@@ -651,12 +698,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				001AA13428B9044000FF9B42 /* NetworkController.swift in Sources */,
 				00A0CD6F284A7E46000DA04B /* MyProfileViewController.swift in Sources */,
+				001AA13F28B90D3600FF9B42 /* FriendsGateway.swift in Sources */,
 				001E0730285C7F6700D33D4A /* Storage.swift in Sources */,
 				008FD06A28A4EE290083A7F1 /* WebTabBarController.swift in Sources */,
 				00B347A0284A20A30049D83A /* MyFriendsViewController.swift in Sources */,
 				00B3479D284A0C8D0049D83A /* Group.swift in Sources */,
 				0052A46A284A049D00FC061C /* TableViewCell.swift in Sources */,
+				001AA14228B911E700FF9B42 /* FriendsPostViewModel.swift in Sources */,
 				007B92A6289C089C00095176 /* UIImageView + extention.swift in Sources */,
 				00F04107285E1517001145E4 /* MyProfile.swift in Sources */,
 				00EB7ABF28A5557500D9C889 /* DataPhotosArrayParam.swift in Sources */,
@@ -672,6 +722,7 @@
 				00C8BF54284F98F7001D0801 /* MyPhotoGallery.swift in Sources */,
 				0093218E2849F881005A0308 /* LoginViewController.swift in Sources */,
 				0069503E285215530003E68B /* LikeControlView.swift in Sources */,
+				001AA13728B906D800FF9B42 /* RealmStorage.swift in Sources */,
 				007F7144287F61DA00AB7427 /* PhotosArrayParam.swift in Sources */,
 				00CE640D28AE68900098660D /* DataAboutUser.swift in Sources */,
 				00C8BF51284DFB52001D0801 /* SelectedPhotoCollectionViewCell.swift in Sources */,
@@ -684,13 +735,14 @@
 				00CE640828ADA5790098660D /* UserDataBase.swift in Sources */,
 				00F0412D2860B10E001145E4 /* GroupProfileViewController.swift in Sources */,
 				0082E221287C8E260030528A /* WebDataRequest.swift in Sources */,
+				001AA13C28B907CC00FF9B42 /* DataStorageProtocol.swift in Sources */,
 				00F0419C2863911E001145E4 /* PopAnimator.swift in Sources */,
 				00B347A2284A21760049D83A /* PeopleViewController.swift in Sources */,
 				00EED3DC28A6BB93007239F0 /* JsonPhotoArray.swift in Sources */,
 				00A0CD6C284A5DEC000DA04B /* ModelPeople.swift in Sources */,
+				001AA13A28B9072900FF9B42 /* NetworkerProtocol.swift in Sources */,
 				00D65BC3287DC82C00554E01 /* TestSearchGroupViewController.swift in Sources */,
 				00C1371E286CCBDF008715AA /* AnotherNewsTableViewCell.swift in Sources */,
-				00E655F228ABEDC600466E56 /* APIGateWay.swift in Sources */,
 				00F04109285E15D8001145E4 /* ModelMyProfile.swift in Sources */,
 				0093218A2849F881005A0308 /* AppDelegate.swift in Sources */,
 				00F041A62865DC25001145E4 /* GalleryHorisontalView.swift in Sources */,
